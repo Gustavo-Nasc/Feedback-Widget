@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  //Precisamos definir o Banco que utilizaremos, no caso o SQLite
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+//Por ser um banco de dados, por padrão, existem tabelas, campos, índices, colunas, chaves, relcionamento, etc.
+
+//Para construirmos uma tabela no Prisma, utilizaremos a sintaxe do Prisma
+model Feedback {
+  //Definindo as colunas
+  //É preciso definir uma Primary Key para cada tabela
+  //Assim como também existe uma outra maneira, implemntada pelo Twitter, chamada Snowflake ID.
+  id String @id @default(uuid()) //Normalmente, os ID's de tabelas são do tipo inteiro e auto incremental, porém, não é tão intuitivo/seguro. Por isso, utilizaremos o conceito de UUID (Universal Unique ID)
+
+  type       String
+  comment    String
+  screenshot String? //A interrogação declara que o campo é opicional
+
+  //Com o comando abaixo, ele criará a tebela conforme o nome
+  @@map("feedbacks")
+}
+
+//Para criarmos de fato a tabela no banco, precisamos executar o comando no terminal:
+//npx prisma migrate dev (Para ambiente de desenvolvimento)
+//npx prisma migrate deploy (Para ambiente de produção)
