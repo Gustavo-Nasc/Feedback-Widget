@@ -1,6 +1,8 @@
 # Feedback Widget
 
-![Preview](./preview.png)
+<div align="center">
+    <img src="./.github/preview.png" width="80%" />
+</div>
 
 ## 🚀 Tecnologias
 
